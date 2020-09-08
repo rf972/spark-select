@@ -2,9 +2,9 @@ name := "spark-select"
 
 organization := "io.minio"
 
-scalaVersion := "2.11.12"
+scalaVersion := "2.12.10"
 
-crossScalaVersions := Seq("2.11.12")
+crossScalaVersions := Seq("2.12.10")
 
 spName := "minio/spark-select"
 
@@ -14,7 +14,7 @@ spIncludeMaven := true
 
 spIgnoreProvided := true
 
-sparkVersion := "2.3.1"
+sparkVersion := "3.0.0"
 
 val testSparkVersion = settingKey[String]("The version of Spark to test against.")
 
@@ -33,8 +33,8 @@ assemblyMergeStrategy in assembly := {
 // Dependent libraries
 libraryDependencies ++= Seq(
   "com.amazonaws" % "aws-java-sdk" % "1.11.434" exclude("com.fasterxml.jackson.core", "jackson-databind"),
-  "org.apache.commons" % "commons-csv" % "1.7",
-  "org.slf4j" % "slf4j-api" % "1.7.5" % "provided",
+  "org.apache.commons" % "commons-csv" % "1.8",
+  "org.slf4j" % "slf4j-api" % "1.7.30" % "provided",
   "org.mockito" % "mockito-core" % "2.0.31-beta"
 )
 
@@ -86,8 +86,8 @@ pomExtra := (
 // Skip tests during assembly
 test in assembly := {}
 
-ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := {
-  if (scalaBinaryVersion.value == "2.10") false
+scoverage.ScoverageKeys.coverageHighlighting := {
+  if (scalaBinaryVersion.value == "2.11") false
   else true
 }
 
