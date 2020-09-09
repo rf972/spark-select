@@ -84,11 +84,14 @@ private[spark] object FilterPushdown {
       columnList = "*"
     }
     val whereClause = buildWhereClause(schema, filters)
+    var retVal = ""
     if (whereClause.length == 0) {
-      s"select $columnList from S3Object s"
+      retVal = s"select $columnList from S3Object s"
     } else {
-      s"select $columnList from S3Object s $whereClause"
+      retVal = s"select $columnList from S3Object s $whereClause"
     }
+    printf("The SQL string is: %s\n", retVal);
+    retVal
   }
 
 }
